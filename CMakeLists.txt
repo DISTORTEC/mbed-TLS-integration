@@ -57,3 +57,14 @@ target_link_libraries(mbed-TLS-object-library PRIVATE
 
 target_sources(mbedtls PRIVATE
 		$<TARGET_OBJECTS:mbed-TLS-object-library>)
+
+distortosAppendToSavedConfiguration(ENABLE_PROGRAMS)
+distortosAppendToSavedConfiguration(ENABLE_TESTING)
+distortosAppendToSavedConfiguration(ENABLE_ZLIB_SUPPORT)
+distortosAppendToSavedConfiguration(INSTALL_MBEDTLS_HEADERS)
+distortosAppendToSavedConfiguration(LINK_WITH_PTHREAD)
+distortosAppendToSavedConfiguration(LINK_WITH_TRUSTED_STORAGE)
+distortosAppendToSavedConfiguration(UNSAFE_BUILD)
+distortosAppendToSavedConfiguration(USE_PKCS11_HELPER_LIBRARY)
+distortosAppendToSavedConfiguration(USE_SHARED_MBEDTLS_LIBRARY)
+distortosAppendToSavedConfiguration(USE_STATIC_MBEDTLS_LIBRARY)
