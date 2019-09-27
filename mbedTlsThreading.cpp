@@ -47,18 +47,17 @@ int mbedTlsMutexUnlock(mbedtls_threading_mutex_t* const mutex)
 	return {};
 }
 
-/*---------------------------------------------------------------------------------------------------------------------+
-| local objects
-+---------------------------------------------------------------------------------------------------------------------*/
-
 /**
  * \brief Low-level initializer for mbed TLS threading
+ *
+ * This function is called before constructors for global and static objects via BIND_LOW_LEVEL_INITIALIZER().
  */
 
-BIND_LOW_LEVEL_INITIALIZER(69,
-		[]()
-		{
-			mbedtls_threading_set_alt(mbedTlsMutexInit, mbedTlsMutexFree, mbedTlsMutexLock, mbedTlsMutexUnlock);
-		});
+void mbedTlsThreadingLowLevelInitializer()
+{
+	mbedtls_threading_set_alt(mbedTlsMutexInit, mbedTlsMutexFree, mbedTlsMutexLock, mbedTlsMutexUnlock);
+}
+
+BIND_LOW_LEVEL_INITIALIZER(69, mbedTlsThreadingLowLevelInitializer);
 
 }	// namespace
