@@ -50,12 +50,10 @@ add_subdirectory("${MBED_TLS_DIRECTORY}" mbed-TLS EXCLUDE_FROM_ALL)
 
 add_library(mbed-TLS-object-library OBJECT
 		${CMAKE_CURRENT_LIST_DIR}/mbedTlsThreading.cpp)
-target_include_directories(mbed-TLS-object-library PRIVATE
-		$<TARGET_PROPERTY:mbedtls,INTERFACE_INCLUDE_DIRECTORIES>)
 target_link_libraries(mbed-TLS-object-library PRIVATE
-		mbed-TLS-interface-library)
+		$<TARGET_PROPERTY:mbedtls,INTERFACE_LINK_LIBRARIES>)
 
-target_sources(mbedtls PRIVATE
+target_sources(mbedtls INTERFACE
 		$<TARGET_OBJECTS:mbed-TLS-object-library>)
 
 distortosAppendToSavedConfiguration(ENABLE_PROGRAMS)
